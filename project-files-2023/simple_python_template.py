@@ -11,7 +11,26 @@ VALID_WORDS = './word-bank/all_words.txt'
 MAX_TRIES = 6
 
 # TODO: select target word at random from TARGET_WORDS
+
+# Stand-in (until function works:
 target_word = 'hello'
+
+def select_random_word(TARGET_WORDS):
+    """Selects target word at random from TARGET_WORDS.
+    Returns a string: target_word
+    Examples:
+    >>> select_random_word()
+    'ficus'
+    >>> select_random_word()
+    'mango'
+    >>> select_random_word()
+    'holly'
+    """
+
+    return target_word
+# Uncomment to run when function works
+# target_word = select_random_word()
+
 
 # TODO: repeat for MAX_TRIES valid attempts
 # (start loop)
@@ -53,5 +72,7 @@ def display_matching_characters(guess='hello', target_word='world'):
         i += 1
 
 # Uncomment to run:
-# display_matching_characters()
-# print(pick_target_word())
+
+
+display_matching_characters()
+print(pick_target_word())

@@ -34,9 +34,22 @@ def select_random_word(TARGET_WORDS):
 
 # TODO: repeat for MAX_TRIES valid attempts
 # (start loop)
+print("Please enter a 5-letter word")
 guess = input("Enter guess? ")
 
-# TODO: ensure guess in VALID_WORDS
+
+def valid_guess_checker(guess):
+    """Checks whether a guess is in  the VALID_WORDS list.
+    Takes user input "guess" and returns boolean "in_list"
+
+    Example:
+    validate_guess"""
+    in_list = False
+
+    return in_list
+
+
+
 
 # TODO: provide clues for each character in the guess using your scoring algorithm
 if guess == target_word:

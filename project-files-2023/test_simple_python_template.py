@@ -1,11 +1,12 @@
 """Tests for simple_python_template"""
+import pytest
 
 TARGET_WORDS = './word-bank/target_words.txt'
 VALID_WORDS = './word-bank/all_words.txt'
 """pytest Tests for simple_python_template.py"""
 
 # Once function is written,
-# from simple_python_template import select_target_word
+# from simple_python_template import select_target_word, guess_scorer
 
 
 def test_select_random_word():
@@ -43,3 +44,15 @@ def test_valid_guess_checker(guess):
             continue
 
     assert in_list
+
+# Learned how to use parametrize from
+# https://www.datacamp.com/tutorial/pytest-tutorial-a-hands-on-guide-to-unit-testing
+
+
+@pytest.mark.parametrize("test_input1, test_input2, expected_output",
+                         [('mango', 'mango', '2, 2, 2, 2, 2'),
+                          ('mango', 'ficus', '0, 0, 0, 0, 0'),
+                          ('mango', 'manga', '2, 2, 2, 2, 0')])
+def test_guess_scorer(test_input1, test_input2, expected_output):
+    """Test for guess_scorer()"""
+    assert guess_scorer(test_input1, test_input2) == expected_output

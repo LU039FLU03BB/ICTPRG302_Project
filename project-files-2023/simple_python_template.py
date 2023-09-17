@@ -43,11 +43,37 @@ def valid_guess_checker(guess):
     Takes user input "guess" and returns boolean "in_list"
 
     Example:
-    validate_guess"""
+    >>> valid_guess_checker('12345')
+    False
+    >>> valid_guess_checker('ficus')
+    True
+    >>> valid_guess_checker('    ')
+    False
+    >>> valid_guess_checker('zzzzzzzzzzzzzz')
+    False
+
+    """
     in_list = False
 
     return in_list
 
+
+def guess_scorer(target_word, guess):
+    """Compares guess to target_word and checks each letter to see if correct,
+    incorrect, or misplaced.
+
+    Returns 2 for correct, 1 for misplaced, & 0 for incorrect
+
+    Examples:
+    >>> guess_scorer('mango', 'ficus')
+    (0, 0, 0, 0, 0)
+    >>> guess_scorer('mango', 'mango')
+    (2, 2, 2, 2, 2)
+    >>> guess_scorer('mango', 'manga')
+    (2, 2, 2, 2, 0)
+    """
+
+    return 0, 0, 0, 0, 0
 
 
 

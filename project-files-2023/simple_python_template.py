@@ -6,8 +6,8 @@ Guess-My-Word Project Application"""
 
 import random
 
-TARGET_WORDS = './word-bank/target_words.txt'
-VALID_WORDS = './word-bank/all_words.txt'
+TARGET_WORDS = 'project-files-2023/word-bank/target_words.txt'
+VALID_WORDS = 'project-files-2023/word-bank/all_words.txt'
 
 MAX_TRIES = 6
 
@@ -23,17 +23,19 @@ def select_random_word(file_path=TARGET_WORDS):
     >>> select_random_word()
     'holly'
     """
-
+    word_list = []
     handle = open(TARGET_WORDS)
+
     for line in handle:
-        line = line.rstrip().lstrip().strip()
-        file_as_list = line.split(" ")
-    target = random.choice(file_as_list)
+        line_list = line.rstrip().split("\n")
+        for item in line_list:
+            if item not in word_list:
+                word_list.append(item)
+    target = random.choice(word_list)
 
     return target
 
 
-# Uncomment to run when function works
 TARGET_WORD = select_random_word(TARGET_WORDS)
 print(TARGET_WORD)
 
@@ -41,7 +43,7 @@ print(TARGET_WORD)
 # TODO: repeat for MAX_TRIES valid attempts
 # (start loop)
 print("Please enter a 5-letter word")
-guess = input("Enter guess? ")
+guess = input("Enter guess: ")
 
 
 def is_valid_guess(guess):
@@ -73,6 +75,11 @@ def is_valid_guess(guess):
     return in_list
 
 
+while not is_valid_guess(guess):
+    print("That is not a valid guess. Please enter a 5-letter word")
+    guess = input("Enter guess: ")
+
+
 def guess_scorer(target_word, guess):
     """Compares guess to target_word and checks each letter to see if correct,
     incorrect, or misplaced.
@@ -94,7 +101,7 @@ def guess_scorer(target_word, guess):
 # TODO: provide clues for each character
 # in the guess using your scoring algorithm
 
-if guess == target_word:
+if guess == TARGET_WORD:
     print("Your guess is correct!")
 else:
     print("Your guess is wrong!")

@@ -7,7 +7,7 @@ VALID_WORDS = './word-bank/all_words.txt'
 
 # Once function is written,
 # from simple_python_template import select_target_word, guess_scorer
-
+from simple_python_template import is_valid_guess
 
 def test_select_random_word():
     """Test for select_random_word()"""

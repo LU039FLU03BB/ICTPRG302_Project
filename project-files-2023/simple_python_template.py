@@ -38,22 +38,31 @@ print("Please enter a 5-letter word")
 guess = input("Enter guess? ")
 
 
-def valid_guess_checker(guess):
+def is_valid_guess(guess):
     """Checks whether a guess is in  the VALID_WORDS list.
     Takes user input "guess" and returns boolean "in_list"
 
     Example:
-    >>> valid_guess_checker('12345')
+    >>> is_valid_guess('12345')
     False
-    >>> valid_guess_checker('ficus')
+    >>> is_valid_guess('ficus')
     True
-    >>> valid_guess_checker('    ')
+    >>> is_valid_guess('    ')
     False
-    >>> valid_guess_checker('zzzzzzzzzzzzzz')
+    >>> is_valid_guess('zzzzzzzzzzzzzz')
     False
 
     """
     in_list = False
+    guess = guess.lower()
+
+    handle = open(VALID_WORDS)
+    for line in handle:
+        line = line.rstrip()
+        if guess == line:
+            in_list = True
+        else:
+            continue
 
     return in_list
 
@@ -76,8 +85,9 @@ def guess_scorer(target_word, guess):
     return 0, 0, 0, 0, 0
 
 
+# TODO: provide clues for each character
+# in the guess using your scoring algorithm
 
-# TODO: provide clues for each character in the guess using your scoring algorithm
 if guess == target_word:
     print("Your guess is correct!")
 else:
@@ -85,33 +95,3 @@ else:
 
 # (end loop)
 print("Game Over")
-
-
-# NOTES:
-# ======
-# - Add your own flair to the project
-# - You will be required to add and refine features based on changing requirements
-# - Ensure your code passes any tests you have defined for it.
-
-# SNIPPETS
-# ========
-# A set of helpful snippets that may help you meet the project requirements.
-
-def pick_target_word(words=None):
-    """returns a random item from the list"""
-    words = ['a', 'b', 'c']
-    return random.choice(words)
-
-
-def display_matching_characters(guess='hello', target_word='world'):
-    """Get characters in guess that correspond to characters in the target_word"""
-    i = 0
-    for char in guess:
-        print(char, target_word[i])
-        i += 1
-
-# Uncomment to run:
-
-
-display_matching_characters()
-print(pick_target_word())

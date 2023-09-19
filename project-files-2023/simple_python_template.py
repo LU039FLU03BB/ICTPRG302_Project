@@ -1,7 +1,8 @@
 """NMTAFE ICTPRG302:
 Guess-My-Word Project Application"""
 # See the assignment worksheet and journal for further details.
-# Begin by completing the TODO items below in the order you specified in the journal
+# Begin by completing the TODO
+# items below in the order you specified in the journal
 
 import random
 
@@ -10,14 +11,10 @@ VALID_WORDS = './word-bank/all_words.txt'
 
 MAX_TRIES = 6
 
-# TODO: select target word at random from TARGET_WORDS
 
-# Stand-in (until function works:
-target_word = 'hello'
-
-def select_random_word(TARGET_WORDS):
+def select_random_word(file_path=TARGET_WORDS):
     """Selects target word at random from TARGET_WORDS.
-    Returns a string: target_word
+    Returns a string: target
     Examples:
     >>> select_random_word()
     'ficus'
@@ -27,9 +24,18 @@ def select_random_word(TARGET_WORDS):
     'holly'
     """
 
-    return target_word
+    handle = open(TARGET_WORDS)
+    for line in handle:
+        line = line.rstrip().lstrip().strip()
+        file_as_list = line.split(" ")
+    target = random.choice(file_as_list)
+
+    return target
+
+
 # Uncomment to run when function works
-# target_word = select_random_word()
+TARGET_WORD = select_random_word(TARGET_WORDS)
+print(TARGET_WORD)
 
 
 # TODO: repeat for MAX_TRIES valid attempts

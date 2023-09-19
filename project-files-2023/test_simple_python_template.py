@@ -6,13 +6,12 @@ VALID_WORDS = './word-bank/all_words.txt'
 """pytest Tests for simple_python_template.py"""
 
 # Once function is written,
-# from simple_python_template import select_target_word, guess_scorer
+from simple_python_template import select_random_word
 from simple_python_template import is_valid_guess
 
 def test_select_random_word():
     """Test for select_random_word()"""
-    target_word = 'mango'
-    # target_word = select_random_word() once function is written
+    target_word = select_random_word()
     is_from_file = False
 
     handle = open(TARGET_WORDS)

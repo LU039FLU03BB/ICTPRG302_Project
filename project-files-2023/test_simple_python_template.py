@@ -26,24 +26,26 @@ def test_select_random_word():
     assert is_from_file
 
 
-def test_valid_guess_checker(guess):
-    """Test for valid_guess_checker()
+@pytest.mark.parametrize("guess", [
+    "ficus",
+    "Ficus",
+    "FICUS",
+    "FiCuS",
+    "mango",
+])
+def test_is_valid_guess(guess):
+    assert is_valid_guess(guess)
 
-    If guess is in VALID_WORDS, it is a valid guess.
-    To run test:
-    pytest --guess guessgoeshere test_simple_python_template.py
-    """
-    in_list = False
 
-    handle = open(VALID_WORDS)
-    for line in handle:
-        line = line.rstrip()
-        if guess == line:
-            in_list = True
-        else:
-            continue
+@pytest.mark.parametrize("invalid_guess", [
+    "",
+    "ficu5",
+    "mangooooooooo",
+    "12345",
+])
+def test_is_valid_guess_invalid(invalid_guess):
+    assert not is_valid_guess(invalid_guess)
 
-    assert in_list
 
 # Learned how to use parametrize from
 # https://www.datacamp.com/tutorial/pytest-tutorial-a-hands-on-guide-to-unit-testing

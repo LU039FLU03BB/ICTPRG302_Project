@@ -9,8 +9,6 @@ import random
 TARGET_WORDS = 'project-files-2023/word-bank/target_words.txt'
 VALID_WORDS = 'project-files-2023/word-bank/all_words.txt'
 
-MAX_TRIES = 6
-
 
 def select_random_word(file_path=TARGET_WORDS):
     """Selects target word at random from TARGET_WORDS.
@@ -34,16 +32,6 @@ def select_random_word(file_path=TARGET_WORDS):
     target = random.choice(word_list)
 
     return target
-
-
-TARGET_WORD = select_random_word(TARGET_WORDS)
-print(TARGET_WORD)
-
-
-# TODO: repeat for MAX_TRIES valid attempts
-# (start loop)
-print("Please enter a 5-letter word")
-guess = input("Enter guess: ")
 
 
 def is_valid_guess(guess):
@@ -75,11 +63,6 @@ def is_valid_guess(guess):
     return in_list
 
 
-while not is_valid_guess(guess):
-    print("That is not a valid guess. Please enter a 5-letter word")
-    guess = input("Enter guess: ")
-
-
 def guess_scorer(target_word, guess):
     """Compares guess to target_word and checks each letter to see if correct,
     incorrect, or misplaced.
@@ -98,13 +81,33 @@ def guess_scorer(target_word, guess):
     return 0, 0, 0, 0, 0
 
 
+def play():
+    """Starts the game and goes through the flow chart"""
+    TARGET_WORD = select_random_word(TARGET_WORDS)
+    print(TARGET_WORD)
+    MAX_TRIES = 6
+
+    while MAX_TRIES > 0:
+
+        print("Please enter a 5-letter word")
+        guess = input("Enter guess: ")
+
+        while not is_valid_guess(guess):
+            print("That is not a valid guess. Please enter a 5-letter word")
+            guess = input("Enter guess: ")
+
+        if guess == TARGET_WORD:
+            print("Your guess is correct!")
+        else:
+            print("Your guess is wrong!")
+
 # TODO: provide clues for each character
 # in the guess using your scoring algorithm
+        MAX_TRIES = MAX_TRIES - 1
+        if MAX_TRIES != 0:
+            print("You have ", MAX_TRIES, "tries left. Please guess again")
 
-if guess == TARGET_WORD:
-    print("Your guess is correct!")
-else:
-    print("Your guess is wrong!")
+    print("Game Over")
 
-# (end loop)
-print("Game Over")
+
+play()
